@@ -18,7 +18,7 @@ module.exports = {
       return user.username === username;
     });
     if(!user) {
-      return cb('error');
+      return cb(new Error('no user found'));
     }
     return cb(null, user);
   },
@@ -28,7 +28,7 @@ module.exports = {
       return user.id === id;
     });
     if(!user) {
-      return cb('error');
+      return cb(new Error('no user found'));
     }
     return cb(null, user);
   }
