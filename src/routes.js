@@ -45,4 +45,9 @@ module.exports = function(app, passport) {
       res.redirect('/');
     }
   );
+
+  app.use(function(req, res){
+    res.render('404', { status: 404, url: req.url });
+  });
+
 };
