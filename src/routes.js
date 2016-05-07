@@ -39,7 +39,6 @@ module.exports = function(app, passport) {
   );
 
   app.get('/logout',
-    ensureLoggedIn,
     function(req, res) {
       req.logout();
       res.redirect('/');
