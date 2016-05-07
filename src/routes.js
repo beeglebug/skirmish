@@ -1,20 +1,21 @@
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn('/login');
-var ensureLoggedOut = require('connect-ensure-login').ensureLoggedOut('/secure');
+var ensureLoggedOut = require('connect-ensure-login').ensureLoggedOut('/');
 
 module.exports = function(app, passport) {
 
-  app.get('/', function(req, res) {
-    res.render('index', {
-      request: req
-    });
+  app.use(function(req, res, next) {
+    res.locals.user = req.user;
+    next();
   });
 
-  app.get('/secure',
+  app.get('/', function(req, res) {
+    res.render('index');
+  });
+
+  app.get('/game',
     ensureLoggedIn,
     function(req, res) {
-      res.render('secure', {
-        request: req
-      });
+      res.render('game/index');
     }
   );
 
@@ -22,8 +23,7 @@ module.exports = function(app, passport) {
     ensureLoggedOut,
     function(req, res) {
       res.render('login', {
-        error: req.flash('error'),
-        request: req
+        error: req.flash('error')
       });
     }
   );
@@ -32,7 +32,7 @@ module.exports = function(app, passport) {
     ensureLoggedOut,
     passport.authenticate('local', {
       badRequestMessage: 'missing',
-      successRedirect: '/',
+      successReturnToOrRedirect: '/',
       failureRedirect: '/login',
       failureFlash: true
     })
@@ -47,7 +47,7 @@ module.exports = function(app, passport) {
   );
 
   app.use(function(req, res){
-    res.render('404', { status: 404, url: req.url });
+    res.render('404', { status: 404 });
   });
 
 };

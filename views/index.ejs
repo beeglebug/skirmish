@@ -1,2 +1,7 @@
 <h1>home</h1>
-<% include ./components/links %>
+<% if(user) { %>
+<a href="/logout">logout</a>
+<% } else { %>
+<a href="/login">login</a>
+<% } %>
+<a href="/game">game</a>
