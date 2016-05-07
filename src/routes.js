@@ -4,7 +4,7 @@ var ensureLoggedOut = require('connect-ensure-login').ensureLoggedOut('/secure')
 module.exports = function(app, passport) {
 
   app.get('/', function(req, res) {
-    res.render('home.ejs', {
+    res.render('home', {
       request: req
     });
   });
@@ -12,7 +12,7 @@ module.exports = function(app, passport) {
   app.get('/secure',
     ensureLoggedIn,
     function(req, res) {
-      res.render('secure.ejs', {
+      res.render('secure', {
         request: req
       });
     }
@@ -21,7 +21,7 @@ module.exports = function(app, passport) {
   app.get('/login',
     ensureLoggedOut,
     function(req, res) {
-      res.render('login.ejs', {
+      res.render('login', {
         error: req.flash('error'),
         request: req
       });
