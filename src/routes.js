@@ -4,7 +4,7 @@ var ensureLoggedOut = require('connect-ensure-login').ensureLoggedOut('/secure')
 module.exports = function(app, passport) {
 
   app.get('/', function(req, res) {
-    res.render('home', {
+    res.render('index', {
       request: req
     });
   });
