@@ -1,15 +1,29 @@
-var users = [
-  {
-    id: 1,
-    username: 'test1',
-    password: 'password1'
-  },
-  {
-    id: 2,
-    username: 'test1',
-    password: 'password1'
-  }
-];
+  var users = [
+    {
+      username: 'test1',
+      password: 'password1',
+      squadrons: [
+        {
+          name: 'My Squadron',
+          ships: [
+
+          ]
+        }
+      ]
+    },
+    {
+      username: 'test1',
+      password: 'password1',
+      squadrons: [
+        {
+          name: 'My Squadron',
+          ships: [
+
+          ]
+        }
+      ]
+    }
+  ];
 
 module.exports = {
 

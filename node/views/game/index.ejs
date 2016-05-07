@@ -1,0 +1,7 @@
+<h1>game index</h1>
+<% include ../components/header %>
+<ul>
+<% user.squadrons.forEach(function(squadron) { %>
+<li><%= squadron.name %></li>
+<% }) %>
+</ul>

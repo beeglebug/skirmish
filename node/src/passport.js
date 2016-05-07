@@ -1,18 +1,15 @@
 var passport = require('passport');
 var passportLocal = require('./middleware/passport-local');
-var users = require('./users.js');
+var users = require('../data/users.js');
 
 passport.use(passportLocal);
 
 passport.serializeUser(function(user, cb) {
-  cb(null, user.id);
+  cb(null, user.username);
 });
 
-passport.deserializeUser(function(id, cb) {
-  users.findById(id, function (err, user) {
-    if (err) { return cb(err); }
-    cb(null, user);
-  });
+passport.deserializeUser(function(username, cb) {
+  users.findByUsername(username, cb);
 });
 
 module.exports = passport;
